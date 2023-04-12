@@ -6,9 +6,13 @@ metadata:
   labels:
     app: eks-example
   annotations:
-    flux.weave.works/automated: "true" 
+
+    # Container Image Automated Updates
+    flux.weave.works/automated: "true"
+    # do not apply this manifest on the cluster
+    #flux.weave.works/ignore: "true"
 spec:
-  replicas: 1 
+  replicas: 1
   selector:
     matchLabels:
       app: eks-example
@@ -19,7 +23,7 @@ spec:
     spec:
       containers:
       - name: eks-example
-        image: 743879174490.dkr.ecr.us-east-2.amazonaws.com/eks-example:77f57be9 
+        image: 743879174490.dkr.ecr.us-east-2.amazonaws.com/eks-example:77f57be9
         imagePullPolicy: IfNotPresent
         resources:
           requests: 
